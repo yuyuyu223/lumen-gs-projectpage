@@ -28,6 +28,24 @@ body {
     margin-bottom: 5px;
 }
 
+.team-logo-group {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.team-logo-group img {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 6px;
+  height: 150px;
+  max-width: 150px;
+  object-fit: contain;
+  padding: 5px 8px;
+}
+
 .dnerf {
   font-variant: small-caps;
 }
