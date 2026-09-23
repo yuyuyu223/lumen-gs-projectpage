@@ -216,8 +216,8 @@ bottom: 0;
 left: 50%;
 right: auto;
 transform: translateX(-50%);
-width: calc((100% - 48px) * 0.6 - 3rem);
-min-width: 60vw;
+width: calc((100% - 48px) * 0.55 - 3rem);
+min-width: 50vw;
 max-width: 1600px;
 background-color: rgba(0, 0, 0, 0.3); /* 40% opacity black */
 z-index: 1; /* Make sure it's behind the text */
@@ -226,8 +226,8 @@ transition: opacity 1.0s;
 
 .wide-section-container {
   max-width: 1600px !important;
-  min-width: 60vw;
-  width: calc(60% - 3rem);
+  min-width: 50vw;
+  width: calc(55% - 3rem);
 }
 
 .intro-section-container {
@@ -245,8 +245,8 @@ transition: opacity 1.0s;
   margin-left: auto;
   margin-right: auto;
   max-width: 1600px;
-  min-width: 60vw;
-  width: calc((100% - 48px) * 0.6 - 3rem);
+  min-width: 50vw;
+  width: calc((100% - 48px) * 0.55 - 3rem);
 }
 
 .hero-foot .tabs li:nth-child(1) a {
@@ -308,8 +308,8 @@ transition: opacity 1.0s;
   position: absolute;
   top: 0;
   transform: translateX(-50%);
-  min-width: 60vw;
-  width: calc((100% - 48px) * 0.6 - 3rem);
+  min-width: 50vw;
+  width: calc((100% - 48px) * 0.55 - 3rem);
   z-index: 0;
 }
 
@@ -318,8 +318,8 @@ transition: opacity 1.0s;
   margin-left: auto !important;
   margin-right: auto !important;
   max-width: 1600px !important;
-  min-width: 60vw !important;
-  width: calc(60% - 3rem) !important;
+  min-width: 50vw !important;
+  width: calc(55% - 3rem) !important;
 }
 
 [data-video-story] .navbar {
@@ -346,11 +346,11 @@ transition: opacity 1.0s;
   height: 100%;
   left: 50%;
   max-width: 1600px;
+  min-width: 50vw;
   position: absolute;
   top: 0;
   transform: translateX(-50%);
-  min-width: 60vw;
-  width: 60vw;
+  width: calc((100% - 48px) * 0.55 - 3rem);
   z-index: 0;
 }
 
