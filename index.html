@@ -75,59 +75,60 @@
 
   <script src="https://kit.fontawesome.com/19914a84eb.js" crossorigin="anonymous"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script type="module" src="./static/js/gaussian-splat-viewer.js"></script>
 </head>
 
+<body>
 <section class="hero is-black is-fullheight video" data-video-story style="overflow: hidden; position:relative;">
   <div class="hero-video" data-video-sequence="desktop">
     <div class="story-track" data-story-track>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/main4.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/main4.realcugan.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/snow002.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/snow002.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/output_50_0_light_trans.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/output_50_0_light_trans.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/pl.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/pl.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/mpl.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/mpl.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/sun_light_down.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/sun_light_down.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/env_light_down.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/env_light_down.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/daytime.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/daytime.mp4" type="video/mp4">
         </video>
       </div>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/har.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/har.mp4" type="video/mp4">
         </video>
       </div>
     </div>
@@ -135,8 +136,8 @@
   <div class="hero-video is-hidden-tablet is-inline-block-mobile" data-video-sequence="mobile">
     <div class="story-track" data-story-track>
       <div class="story-panel">
-        <video data-story-video playsinline webkit-playsinline muted preload="auto" aria-hidden="true">
-          <source src=" ./static/videos/output_0_0_light_trans.mp4" type="video/mp4">
+        <video data-story-video playsinline webkit-playsinline muted preload="none" aria-hidden="true">
+          <source data-src=" ./static/videos/output_0_0_light_trans.mp4" type="video/mp4">
         </video>
       </div>
     </div>
@@ -149,6 +150,20 @@
       <div class="container is-size-5">
         <div class="navbar-menu">
           <div class="navbar-end">
+            <button class="navbar-item title-layer-toggle" id="title-layer-toggle" type="button" aria-pressed="true" title="显示/隐藏标题层">
+              <span class="icon">
+                <svg class="icon-eye" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg class="icon-eye-slash" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17.94 17.94A10.4 10.4 0 0 1 12 19C5 19 1 12 1 12a18.5 18.5 0 0 1 5.06-5.94" />
+                  <path d="M9.9 4.24A10.6 10.6 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                  <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              </span>
+            </button>
             <a class="navbar-item pl-4 pr-4" href="#">
               <span class="icon" style="margin-right:5px;">
                 <img src="./static/images/pdf.svg" alt="PDF" />
@@ -268,7 +283,7 @@
         <h2 class="subtitle ">
           LUMEN-GS is the <span style="color: red; white-space: nowrap;">first</span> feed-forward reconstruction model supporting light disentanglement and intrinsic properties prediction for driving scenes. It is a deep integration of CV (computer vision) and CG (computer graphics).
         </h2>
-        <img src="./static/images/intro.png" alt="espresso-and-latte" />
+        <img loading="lazy" decoding="async" src="./static/images/intro.webp" alt="espresso-and-latte" />
         <h2 class="subtitle">
           <!-- <strong>The best part?</strong> -->
           Given single-frame multi-view images and the corresponding GPS/IMU data, our model predicts the intrinsic primitives and environmental light context of the scene. By further adjusting the lighting parameters, the model can support various downstream tasks.
@@ -299,6 +314,7 @@
             </div>
           </div>
         </div>
+        <!--
         <div class="input-comparison" data-scroll-reveal aria-label="Input comparison">
           <div class="input-row input-row-large">
             <div class="input-label">UrbanIR</div>
@@ -345,6 +361,7 @@
             </div>
           </div>
         </div>
+        -->
       </div>
     </div>
   </div>
@@ -356,7 +373,7 @@
     <div class="columns is-centered">
       <div class="column is-full has-text-justified is-hidden-mobile">
         <h2 class="title is-1 has-text-centered is-size-4-mobile">Method</h2>
-        <img src="./static/images/method.png" alt="espresso-and-latte" />
+        <img loading="lazy" decoding="async" src="./static/images/method.webp" alt="espresso-and-latte" />
         <p class="content has-text-justified">
           <strong>Overview of LUMEN-GS.</strong> LUMEN-GS is a feed-forward reconstruction model with dual rendering
           branches. It further introduces a teacher model for physical properties, enabling feed-forward intrinsic property
@@ -649,17 +666,17 @@
       </div>
       <div class="nvs-display-grid">
         <figure class="nvs-reference-panel">
-          <img class="nvs-reference-image" src="./static/videos/nvs/output_0_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
+          <img class="nvs-reference-image" loading="lazy" decoding="async" src="./static/videos/nvs/output_0_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
           <span class="nvs-reference-label">Reference</span>
         </figure>
         <figure class="image-comparison nvs-video-comparison" data-video-comparison style="--comparison-position: 50%;">
           <div class="comparison-stage">
-            <video class="comparison-video" data-nvs-modal autoplay loop playsinline webkit-playsinline muted preload="auto">
-              <source src="./static/videos/nvs/output_0_0_scene_albedo.mp4" type="video/mp4">
+            <video class="comparison-video" data-nvs-modal loop playsinline webkit-playsinline muted preload="none">
+              <source data-src="./static/videos/nvs/output_0_0_scene_albedo.mp4" type="video/mp4">
             </video>
             <div class="comparison-overlay">
-              <video class="comparison-video" data-nvs-rgb autoplay loop playsinline webkit-playsinline muted preload="auto">
-                <source src="./static/videos/nvs/output_0_0_scene_rgb.mp4" type="video/mp4">
+              <video class="comparison-video" data-nvs-rgb loop playsinline webkit-playsinline muted preload="none">
+                <source data-src="./static/videos/nvs/output_0_0_scene_rgb.mp4" type="video/mp4">
               </video>
             </div>
             <span class="comparison-label comparison-label-left">RGB</span>
@@ -673,17 +690,17 @@
       </div>
       <div class="nvs-display-grid">
         <figure class="nvs-reference-panel">
-          <img class="nvs-reference-image" src="./static/videos/nvs/output_361_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
+          <img class="nvs-reference-image" loading="lazy" decoding="async" src="./static/videos/nvs/output_361_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
           <span class="nvs-reference-label">Reference</span>
         </figure>
         <figure class="image-comparison nvs-video-comparison" data-video-comparison style="--comparison-position: 50%;">
           <div class="comparison-stage">
-            <video class="comparison-video" data-nvs-modal autoplay loop playsinline webkit-playsinline muted preload="auto">
-              <source src="./static/videos/nvs/output_361_0_scene_albedo.mp4" type="video/mp4">
+            <video class="comparison-video" data-nvs-modal loop playsinline webkit-playsinline muted preload="none">
+              <source data-src="./static/videos/nvs/output_361_0_scene_albedo.mp4" type="video/mp4">
             </video>
             <div class="comparison-overlay">
-              <video class="comparison-video" data-nvs-rgb autoplay loop playsinline webkit-playsinline muted preload="auto">
-                <source src="./static/videos/nvs/output_361_0_scene_rgb.mp4" type="video/mp4">
+              <video class="comparison-video" data-nvs-rgb loop playsinline webkit-playsinline muted preload="none">
+                <source data-src="./static/videos/nvs/output_361_0_scene_rgb.mp4" type="video/mp4">
               </video>
             </div>
             <span class="comparison-label comparison-label-left">RGB</span>
@@ -695,19 +712,20 @@
           </div>
         </figure>
       </div>
+      <!--
       <div class="nvs-display-grid">
         <figure class="nvs-reference-panel">
-          <img class="nvs-reference-image" src="./static/videos/nvs/output_150_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
+          <img class="nvs-reference-image" loading="lazy" decoding="async" src="./static/videos/nvs/output_150_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
           <span class="nvs-reference-label">Reference</span>
         </figure>
         <figure class="image-comparison nvs-video-comparison" data-video-comparison style="--comparison-position: 50%;">
           <div class="comparison-stage">
-            <video class="comparison-video" data-nvs-modal autoplay loop playsinline webkit-playsinline muted preload="auto">
-              <source src="./static/videos/nvs/output_150_0_scene_albedo.mp4" type="video/mp4">
+            <video class="comparison-video" data-nvs-modal loop playsinline webkit-playsinline muted preload="none">
+              <source data-src="./static/videos/nvs/output_150_0_scene_albedo.mp4" type="video/mp4">
             </video>
             <div class="comparison-overlay">
-              <video class="comparison-video" data-nvs-rgb autoplay loop playsinline webkit-playsinline muted preload="auto">
-                <source src="./static/videos/nvs/output_150_0_scene_rgb.mp4" type="video/mp4">
+              <video class="comparison-video" data-nvs-rgb loop playsinline webkit-playsinline muted preload="none">
+                <source data-src="./static/videos/nvs/output_150_0_scene_rgb.mp4" type="video/mp4">
               </video>
             </div>
             <span class="comparison-label comparison-label-left">RGB</span>
@@ -719,19 +737,20 @@
           </div>
         </figure>
       </div>
+      -->
       <div class="nvs-display-grid">
         <figure class="nvs-reference-panel">
-          <img class="nvs-reference-image" src="./static/videos/nvs/output_190_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
+          <img class="nvs-reference-image" loading="lazy" decoding="async" src="./static/videos/nvs/output_190_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
           <span class="nvs-reference-label">Reference</span>
         </figure>
         <figure class="image-comparison nvs-video-comparison" data-video-comparison style="--comparison-position: 50%;">
           <div class="comparison-stage">
-            <video class="comparison-video" data-nvs-modal autoplay loop playsinline webkit-playsinline muted preload="auto">
-              <source src="./static/videos/nvs/output_190_0_scene_albedo.mp4" type="video/mp4">
+            <video class="comparison-video" data-nvs-modal loop playsinline webkit-playsinline muted preload="none">
+              <source data-src="./static/videos/nvs/output_190_0_scene_albedo.mp4" type="video/mp4">
             </video>
             <div class="comparison-overlay">
-              <video class="comparison-video" data-nvs-rgb autoplay loop playsinline webkit-playsinline muted preload="auto">
-                <source src="./static/videos/nvs/output_190_0_scene_rgb.mp4" type="video/mp4">
+              <video class="comparison-video" data-nvs-rgb loop playsinline webkit-playsinline muted preload="none">
+                <source data-src="./static/videos/nvs/output_190_0_scene_rgb.mp4" type="video/mp4">
               </video>
             </div>
             <span class="comparison-label comparison-label-left">RGB</span>
@@ -743,19 +762,20 @@
           </div>
         </figure>
       </div>
+      <!--
       <div class="nvs-display-grid">
         <figure class="nvs-reference-panel">
-          <img class="nvs-reference-image" src="./static/videos/nvs/output_360_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
+          <img class="nvs-reference-image" loading="lazy" decoding="async" src="./static/videos/nvs/output_360_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
           <span class="nvs-reference-label">Reference</span>
         </figure>
         <figure class="image-comparison nvs-video-comparison" data-video-comparison style="--comparison-position: 50%;">
           <div class="comparison-stage">
-            <video class="comparison-video" data-nvs-modal autoplay loop playsinline webkit-playsinline muted preload="auto">
-              <source src="./static/videos/nvs/output_360_0_scene_albedo.mp4" type="video/mp4">
+            <video class="comparison-video" data-nvs-modal loop playsinline webkit-playsinline muted preload="none">
+              <source data-src="./static/videos/nvs/output_360_0_scene_albedo.mp4" type="video/mp4">
             </video>
             <div class="comparison-overlay">
-              <video class="comparison-video" data-nvs-rgb autoplay loop playsinline webkit-playsinline muted preload="auto">
-                <source src="./static/videos/nvs/output_360_0_scene_rgb.mp4" type="video/mp4">
+              <video class="comparison-video" data-nvs-rgb loop playsinline webkit-playsinline muted preload="none">
+                <source data-src="./static/videos/nvs/output_360_0_scene_rgb.mp4" type="video/mp4">
               </video>
             </div>
             <span class="comparison-label comparison-label-left">RGB</span>
@@ -767,19 +787,20 @@
           </div>
         </figure>
       </div>
+      -->
       <div class="nvs-display-grid">
         <figure class="nvs-reference-panel">
-          <img class="nvs-reference-image" src="./static/videos/nvs/output_47549_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
+          <img class="nvs-reference-image" loading="lazy" decoding="async" src="./static/videos/nvs/output_47549_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
           <span class="nvs-reference-label">Reference</span>
         </figure>
         <figure class="image-comparison nvs-video-comparison" data-video-comparison style="--comparison-position: 50%;">
           <div class="comparison-stage">
-            <video class="comparison-video" data-nvs-modal autoplay loop playsinline webkit-playsinline muted preload="auto">
-              <source src="./static/videos/nvs/output_47549_0_scene_albedo.mp4" type="video/mp4">
+            <video class="comparison-video" data-nvs-modal loop playsinline webkit-playsinline muted preload="none">
+              <source data-src="./static/videos/nvs/output_47549_0_scene_albedo.mp4" type="video/mp4">
             </video>
             <div class="comparison-overlay">
-              <video class="comparison-video" data-nvs-rgb autoplay loop playsinline webkit-playsinline muted preload="auto">
-                <source src="./static/videos/nvs/output_47549_0_scene_rgb.mp4" type="video/mp4">
+              <video class="comparison-video" data-nvs-rgb loop playsinline webkit-playsinline muted preload="none">
+                <source data-src="./static/videos/nvs/output_47549_0_scene_rgb.mp4" type="video/mp4">
               </video>
             </div>
             <span class="comparison-label comparison-label-left">RGB</span>
@@ -791,19 +812,20 @@
           </div>
         </figure>
       </div>
+      <!--
       <div class="nvs-display-grid">
         <figure class="nvs-reference-panel">
-          <img class="nvs-reference-image" src="./static/videos/nvs/output_106759_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
+          <img class="nvs-reference-image" loading="lazy" decoding="async" src="./static/videos/nvs/output_106759_0_scene.webp" alt="Reference image for the novel view synthesis comparison">
           <span class="nvs-reference-label">Reference</span>
         </figure>
         <figure class="image-comparison nvs-video-comparison" data-video-comparison style="--comparison-position: 50%;">
           <div class="comparison-stage">
-            <video class="comparison-video" data-nvs-modal autoplay loop playsinline webkit-playsinline muted preload="auto">
-              <source src="./static/videos/nvs/output_106759_0_scene_albedo.mp4" type="video/mp4">
+            <video class="comparison-video" data-nvs-modal loop playsinline webkit-playsinline muted preload="none">
+              <source data-src="./static/videos/nvs/output_106759_0_scene_albedo.mp4" type="video/mp4">
             </video>
             <div class="comparison-overlay">
-              <video class="comparison-video" data-nvs-rgb autoplay loop playsinline webkit-playsinline muted preload="auto">
-                <source src="./static/videos/nvs/output_106759_0_scene_rgb.mp4" type="video/mp4">
+              <video class="comparison-video" data-nvs-rgb loop playsinline webkit-playsinline muted preload="none">
+                <source data-src="./static/videos/nvs/output_106759_0_scene_rgb.mp4" type="video/mp4">
               </video>
             </div>
             <span class="comparison-label comparison-label-left">RGB</span>
@@ -815,6 +837,7 @@
           </div>
         </figure>
       </div>
+      -->
     </div>
   </div>
 </section>
@@ -830,9 +853,9 @@
       </div>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/0_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/0_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/0_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/0_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -844,9 +867,9 @@
       </figure>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/1_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/1_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/1_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/1_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -865,9 +888,9 @@
       </div>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/2_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/2_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/2_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/2_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -879,9 +902,9 @@
       </figure>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/3_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/3_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/3_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/3_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -900,9 +923,9 @@
       </div>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/4_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/4_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/4_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/4_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -914,9 +937,9 @@
       </figure>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/5_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/5_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/5_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/5_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -927,6 +950,7 @@
         </div>
       </figure>
     </div>
+    <!--
     <div class="gs-viewer-row">
       <div class="gs-viewer-shell" data-gaussian-splat-viewer data-splat-src="static/splat/car6.ksplat">
         <div class="gs-drop-zone" data-splat-drop-zone>
@@ -935,9 +959,9 @@
       </div>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/6_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/6_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/6_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/6_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -949,9 +973,9 @@
       </figure>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/7_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/7_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/7_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/7_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -962,6 +986,7 @@
         </div>
       </figure>
     </div>
+    -->
     <div class="gs-viewer-row">
       <div class="gs-viewer-shell" data-gaussian-splat-viewer data-splat-src="static/splat/car2.ksplat">
         <div class="gs-drop-zone" data-splat-drop-zone>
@@ -970,9 +995,9 @@
       </div>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/8_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/8_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/8_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/8_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -984,9 +1009,9 @@
       </figure>
       <figure class="image-comparison gs-image-comparison" data-image-comparison style="--comparison-position: 50%;">
         <div class="comparison-stage">
-          <img class="comparison-image" src="./static/images/obj_duibi/9_1.png" alt="Dusk image">
+          <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/9_1.webp" alt="Dusk image">
           <div class="comparison-overlay">
-            <img class="comparison-image" src="./static/images/obj_duibi/9_0.png" alt="Original image">
+            <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/obj_duibi/9_0.webp" alt="Original image">
           </div>
           <span class="comparison-label comparison-label-left">Insert</span>
           <span class="comparison-label comparison-label-right">Render</span>
@@ -1036,20 +1061,20 @@
           </div>
         </div>
         <h4 class="title is-2 has-text-centered is-size-4-mobile downstream-subtitle">Snowy Weather Simulation</h4>
-        <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-          <source src=" ./static/videos/snow_all.mp4" type="video/mp4">
+        <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 968 / 1080;">
+          <source data-src=" ./static/videos/snow_all.mp4" type="video/mp4">
         </video>
         <h4 class="title is-2 has-text-centered is-size-4-mobile downstream-subtitle">Rainy Weather Simulation</h4>
-        <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-          <source src=" ./static/videos/rain_all.mp4" type="video/mp4">
+        <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 2432 / 2784;">
+          <source data-src=" ./static/videos/rain_all.mp4" type="video/mp4">
         </video>
         <h4 class="title is-2 has-text-centered is-size-4-mobile downstream-subtitle">Environmental Light Editing</h4>
         <div class="image-comparison-grid" aria-label="Paper figure comparisons">
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/0_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/0_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/0_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/0_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Dusk Image</span>
@@ -1061,9 +1086,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/1_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/1_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/1_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/1_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Dusk Image</span>
@@ -1075,9 +1100,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/2_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/2_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/2_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/2_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Dusk Image</span>
@@ -1089,9 +1114,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/3_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/3_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/3_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/3_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Dusk Image</span>
@@ -1103,9 +1128,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/4_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/4_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/4_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/4_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Dusk Image</span>
@@ -1117,9 +1142,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/5_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/5_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/5_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/5_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Dusk Image</span>
@@ -1131,9 +1156,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/6_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/6_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/6_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/6_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Early Morning Image</span>
@@ -1145,9 +1170,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/7_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/7_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/7_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/7_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Early Morning Image</span>
@@ -1159,9 +1184,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/8_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/8_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/8_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/8_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Early Morning Image</span>
@@ -1173,9 +1198,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi/9_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/9_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi/9_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi/9_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Early Morning Image</span>
@@ -1190,9 +1215,9 @@
         <div class="image-comparison-grid" aria-label="Paper figure comparisons">
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/0_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/0_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/0_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/0_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1204,9 +1229,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/1_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/1_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/1_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/1_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1218,9 +1243,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/2_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/2_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/2_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/2_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1232,9 +1257,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/3_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/3_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/3_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/3_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1246,9 +1271,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/4_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/4_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/4_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/4_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1260,9 +1285,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/5_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/5_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/5_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/5_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1274,9 +1299,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/6_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/6_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/6_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/6_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1288,9 +1313,9 @@
           </figure>
           <figure class="image-comparison" data-image-comparison style="--comparison-position: 50%;">
             <div class="comparison-stage">
-              <img class="comparison-image" src="./static/images/duibi2/7_1.png" alt="Dusk image">
+              <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/7_1.webp" alt="Dusk image">
               <div class="comparison-overlay">
-                <img class="comparison-image" src="./static/images/duibi2/7_0.png" alt="Original image">
+                <img class="comparison-image" loading="lazy" decoding="async" src="./static/images/duibi2/7_0.webp" alt="Original image">
               </div>
               <span class="comparison-label comparison-label-left">Original Image</span>
               <span class="comparison-label comparison-label-right">Night Image</span>
@@ -1303,23 +1328,17 @@
         </div>
         <h4 class="title is-2 has-text-centered is-size-4-mobile downstream-subtitle">Sun Rot</h4>
         <div class="sun-rot-video-grid">
-          <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-            <source src=" ./static/videos/sun_rot/output_95218_0_sun_rot.mp4" type="video/mp4">
+          <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 1216 / 464;"><source data-src=" ./static/videos/sun_rot/output_95218_0_sun_rot.mp4" type="video/mp4">
           </video>
-          <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-            <source src=" ./static/videos/sun_rot/output_106759_0_sun_rot.mp4" type="video/mp4">
+          <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 1216 / 464;"><source data-src=" ./static/videos/sun_rot/output_106759_0_sun_rot.mp4" type="video/mp4">
           </video>
-          <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-            <source src=" ./static/videos/sun_rot/output_26513_0_sun_rot.mp4" type="video/mp4">
+          <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 1216 / 464;"><source data-src=" ./static/videos/sun_rot/output_26513_0_sun_rot.mp4" type="video/mp4">
           </video>
-          <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-            <source src=" ./static/videos/sun_rot/output_76766_0_sun_rot.mp4" type="video/mp4">
+          <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 1216 / 464;"><source data-src=" ./static/videos/sun_rot/output_76766_0_sun_rot.mp4" type="video/mp4">
           </video>
-          <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-            <source src=" ./static/videos/sun_rot/output_72055_0_sun_rot.mp4" type="video/mp4">
+          <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 1216 / 464;"><source data-src=" ./static/videos/sun_rot/output_72055_0_sun_rot.mp4" type="video/mp4">
           </video>
-          <video class="downstream-video" autoplay loop playsinline webkit-playsinline muted preload="auto">
-            <source src=" ./static/videos/sun_rot/output_71662_0_sun_rot.mp4" type="video/mp4">
+          <video class="downstream-video" loop playsinline webkit-playsinline muted preload="none" style="aspect-ratio: 1216 / 464;"><source data-src=" ./static/videos/sun_rot/output_71662_0_sun_rot.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -1330,13 +1349,16 @@
 
 <section class="section is-small" id="Team">
   <div class="container wide-section-container">
+    <!--
     <h2 class="title is-3 is-size-4-mobile">Our Team</h2>
+    -->
     <div class="container has-text-centered">
+    <!--
       <div class="publication-authors is-flex justify-content is-justify-content-space-around is-hidden-mobile">
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://huy-ha.github.io/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/HaochenYu.jpg" alt="Huy Ha">
             </a>
           </figure>
@@ -1345,7 +1367,7 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://yihuai-gao.github.io/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/qiankunLiu.jpg" alt="Haochen Yu">
             </a>
           </figure>
@@ -1354,8 +1376,8 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://zipengfu.github.io/">
-              <img class="is-rounded
-                      " src="./static/images/authors/qimei.png" alt="Qi Mei">
+              <img loading="lazy" decoding="async" class="is-rounded
+                      " src="./static/images/authors/qimei.webp" alt="Qi Mei">
             </a>
           </figure>
           <a href="https://zipengfu.github.io/">Qi Mei</a><sup>1</sup>
@@ -1363,7 +1385,7 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://www.jie-tan.net/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/Hongyuan_Liu.jpg" alt="Hongyuan Liu">
             </a>
           </figure>
@@ -1372,7 +1394,7 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://shurans.github.io/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/Jianfei_Jiang.jpg" alt="Jianfei Jiang">
             </a>
           </figure>
@@ -1383,7 +1405,7 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://shurans.github.io/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/xianglongmeng.jpg" alt="Xianglong Meng">
             </a>
           </figure>
@@ -1393,7 +1415,7 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://shurans.github.io/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/yidawang.jpg" alt="Yida Wang">
             </a>
           </figure>
@@ -1402,7 +1424,7 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://shurans.github.io/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/kunzhan.jpg" alt="Kun Zhan">
             </a>
           </figure>
@@ -1411,7 +1433,7 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://shurans.github.io/">
-              <img class="is-rounded
+              <img loading="lazy" decoding="async" class="is-rounded
                       " src="./static/images/authors/Jiansheng_Chen.jpeg" alt="Jiansheng Chen">
             </a>
           </figure>
@@ -1420,8 +1442,8 @@
         <div class="author-block has-text-centered has-addons-centered">
           <figure class="image author-avatar">
             <a href="https://shurans.github.io/">
-              <img class="is-rounded
-                      " src="./static/images/authors/huiminMa.png" alt="Huimin Ma">
+              <img loading="lazy" decoding="async" class="is-rounded
+                      " src="./static/images/authors/huiminMa.webp" alt="Huimin Ma">
             </a>
           </figure>
           <a href="https://shurans.github.io/">Huimin Ma</a><sup>1</sup>
@@ -1435,9 +1457,10 @@
       </div>
 
       <div class="team-logo-group" aria-label="Affiliations">
-        <img src="./static/images/logo/ustb.png" alt="USTB" />
+        <img src="./static/images/logo/ustb.webp" alt="USTB" />
         <img src="./static/images/logo/liauto.svg" alt="Li Auto" />
       </div>
+    -->
 
     </div>
     <!-- <br>

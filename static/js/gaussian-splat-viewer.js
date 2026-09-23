@@ -42,7 +42,7 @@ import * as THREE from "three";
     dropZone.classList.remove("is-dragging");
   };
 
-  const createSceneAutoRotation = (viewer) => {
+  const createSceneAutoRotation = (viewer, isPaused) => {
     if (!viewer.splatMesh) {
       return () => {};
     }
@@ -55,9 +55,32 @@ import * as THREE from "three";
     let lastSortTime = 0;
     let previousTime = performance.now();
     let disposed = false;
+    let wasPaused = false;
 
     const tick = (time) => {
       if (disposed || viewer.isDisposingOrDisposed?.()) {
+        return;
+      }
+
+      const paused = isPaused ? isPaused() : false;
+
+      if (paused !== wasPaused) {
+        wasPaused = paused;
+
+        try {
+          if (paused) {
+            viewer.stop?.();
+          } else {
+            viewer.start?.();
+          }
+        } catch (error) {
+          // Ignore start/stop transitions that the viewer cannot handle yet.
+        }
+      }
+
+      if (paused) {
+        previousTime = time;
+        animationFrame = window.requestAnimationFrame(tick);
         return;
       }
 
@@ -326,6 +349,20 @@ import * as THREE from "three";
     let viewer = null;
     let disposeControls = null;
     let disposeAutoRotation = null;
+    let inViewport = true;
+
+    if ("IntersectionObserver" in window) {
+      const viewportObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            inViewport = entry.isIntersecting;
+          });
+        },
+        { rootMargin: "150px" }
+      );
+
+      viewportObserver.observe(root);
+    }
 
     const loadScene = async (source, label) => {
       const extension = getFileExtension(label || source);
@@ -351,7 +388,7 @@ import * as THREE from "three";
         await viewer.addSplatScene(source, buildSceneOptions(extension));
         setDefaultCameraView(viewer, disposeControls);
         viewer.start();
-        disposeAutoRotation = createSceneAutoRotation(viewer);
+        disposeAutoRotation = createSceneAutoRotation(viewer, () => !inViewport);
         setStatus(root, "Loaded " + label, "ready");
       } catch (error) {
         console.error(error);
@@ -416,7 +453,28 @@ import * as THREE from "three";
   };
 
   const initPage = () => {
-    document.querySelectorAll(VIEWER_SELECTOR).forEach(initSplatViewer);
+    const roots = Array.from(document.querySelectorAll(VIEWER_SELECTOR));
+
+    if (!("IntersectionObserver" in window)) {
+      roots.forEach(initSplatViewer);
+      return;
+    }
+
+    const initObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          initObserver.unobserve(entry.target);
+          initSplatViewer(entry.target);
+        });
+      },
+      { rootMargin: "400px" }
+    );
+
+    roots.forEach((root) => initObserver.observe(root));
   };
 
   window.addEventListener("beforeunload", () => {

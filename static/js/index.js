@@ -9,6 +9,42 @@
 
   const isVisible = (element) => window.getComputedStyle(element).display !== "none";
 
+  const ensureVideoSource = (video) => {
+    const source = video.querySelector("source");
+    const src = source ? source.getAttribute("data-src") : null;
+
+    if (!source || !src) {
+      return;
+    }
+
+    if (source.getAttribute("src") !== src) {
+      source.setAttribute("src", src);
+      video.load();
+    }
+  };
+
+  const releaseVideo = (video) => {
+    video.pause();
+
+    const source = video.querySelector("source");
+
+    if (source && source.hasAttribute("src")) {
+      source.removeAttribute("src");
+      video.load();
+    }
+  };
+
+  const isNearViewport = (element) => {
+    if (!element || typeof element.getBoundingClientRect !== "function") {
+      return true;
+    }
+
+    const rect = element.getBoundingClientRect();
+    const margin = (window.innerHeight || 800) * 0.25;
+
+    return rect.bottom > -margin && rect.top < (window.innerHeight || 800) + margin;
+  };
+
   const playVideo = (video) => {
     const playback = video.play();
 
@@ -80,6 +116,18 @@
       });
     };
 
+    const preparePlayback = (index) => {
+      if (!videos.length) {
+        return;
+      }
+
+      ensureVideoSource(videos[index]);
+
+      if (videos.length > 1) {
+        ensureVideoSource(videos[(index + 1) % videos.length]);
+      }
+    };
+
     const syncPanelState = (nextIndex, outgoingIndex = null) => {
       panels.forEach((panel, index) => {
         const isActive = index === nextIndex;
@@ -98,6 +146,7 @@
         return;
       }
 
+      preparePlayback(getPublicIndex());
       playVideo(currentVideo);
     };
 
@@ -152,7 +201,7 @@
       video.muted = true;
       video.playsInline = true;
       video.loop = false;
-      video.preload = "auto";
+      video.preload = "none";
     });
 
     if (videos.length === 1) {
@@ -221,6 +270,7 @@
         sequenceElement.classList.remove("is-transitioning");
         clearTimers();
         allVideos.forEach(resetVideo);
+        allVideos.forEach(releaseVideo);
         syncPanelState(currentIndex);
         notifyChange();
       },
@@ -332,7 +382,11 @@
         updateNavState(visibleController.getCurrentIndex());
       }
 
-      visibleController.start();
+      if (visibleController.isVisible()) {
+        visibleController.start();
+      } else {
+        visibleController.reset();
+      }
     };
 
     window.addEventListener("resize", syncPlayback);
@@ -412,6 +466,7 @@
     const comparisons = Array.from(document.querySelectorAll("[data-image-comparison]"));
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const cycleDuration = 5200;
+    const states = [];
 
     comparisons.forEach((comparison) => {
       const range = comparison.querySelector(".comparison-range");
@@ -420,6 +475,8 @@
       if (!range) {
         return;
       }
+
+      const state = { root: comparison, range, active: false };
 
       const updateAspectRatio = () => {
         if (!referenceImage || !referenceImage.naturalWidth || !referenceImage.naturalHeight) {
@@ -432,7 +489,7 @@
         );
       };
 
-      const updatePosition = () => {
+      state.updatePosition = () => {
         comparison.style.setProperty("--comparison-position", range.value + "%");
       };
 
@@ -444,25 +501,98 @@
         }
       }
 
-      range.addEventListener("input", updatePosition);
-      range.addEventListener("change", updatePosition);
-      updatePosition();
+      range.addEventListener("input", state.updatePosition);
+      range.addEventListener("change", state.updatePosition);
+      state.updatePosition();
 
-      if (reduceMotion) {
-        return;
+      states.push(state);
+    });
+
+    if (reduceMotion || !states.length) {
+      return;
+    }
+
+    const stateByElement = new Map(states.map((state) => [state.root, state]));
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const state = stateByElement.get(entry.target);
+
+            if (state) {
+              state.active = entry.isIntersecting;
+            }
+          });
+        },
+        { rootMargin: "10%" }
+      );
+
+      states.forEach((state) => observer.observe(state.root));
+    } else {
+      states.forEach((state) => {
+        state.active = true;
+      });
+    }
+
+    const animate = (timestamp) => {
+      if (!document.hidden) {
+        const phase = (timestamp % cycleDuration) / cycleDuration;
+        const position = (50 - Math.cos(phase * Math.PI * 2) * 50).toFixed(2);
+
+        states.forEach((state) => {
+          if (!state.active) {
+            return;
+          }
+
+          state.range.value = position;
+          state.updatePosition();
+        });
       }
 
-      const animate = (timestamp) => {
-        const phase = (timestamp % cycleDuration) / cycleDuration;
-        const position = 50 - Math.cos(phase * Math.PI * 2) * 50;
-
-        range.value = position.toFixed(2);
-        updatePosition();
-        window.requestAnimationFrame(animate);
-      };
-
       window.requestAnimationFrame(animate);
-    });
+    };
+
+    window.requestAnimationFrame(animate);
+  };
+
+  const initLazyLoopVideos = () => {
+    const videos = Array.from(document.querySelectorAll("video.downstream-video"));
+
+    if (!videos.length) {
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      videos.forEach((video) => {
+        ensureVideoSource(video);
+        video.loop = true;
+        playVideo(video);
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+
+          if (entry.isIntersecting && isNearViewport(video)) {
+            ensureVideoSource(video);
+            video.loop = true;
+            playVideo(video);
+            return;
+          }
+
+          if (!entry.isIntersecting) {
+            video.pause();
+          }
+        });
+      },
+      { rootMargin: "20%" }
+    );
+
+    videos.forEach((video) => observer.observe(video));
   };
 
   const initNvsComparison = () => {
@@ -513,7 +643,7 @@
 
     const getScenePrefix = (rgbVideo) => {
       const source = rgbVideo.querySelector("source");
-      const currentSrc = source ? source.getAttribute("src") || "" : "";
+      const currentSrc = source ? source.getAttribute("data-src") || source.getAttribute("src") || "" : "";
       const match = currentSrc.match(/(.*)_rgb\.mp4$/);
 
       return match ? match[1] : "./static/videos/nvs/output_0_0_scene";
@@ -558,7 +688,7 @@
       if (rgbVideo.readyState >= 1) {
         groupState.updateAspectRatio();
       } else {
-        rgbVideo.addEventListener("loadedmetadata", groupState.updateAspectRatio, { once: true });
+        rgbVideo.addEventListener("loadedmetadata", groupState.updateAspectRatio);
       }
 
       rgbVideo.addEventListener("play", () => playVideo(modalVideo));
@@ -571,8 +701,48 @@
       groupState.updatePosition();
     };
 
+    let currentMode = null;
+    const groupByElement = new Map(comparisonGroups.map((groupState) => [groupState.group, groupState]));
+
+    const modeSrc = (groupState) => groupState.scenePrefix + "_" + currentMode + ".mp4";
+
+    const playGroup = (groupState) => {
+      if (groupState.rgbVideo.paused) {
+        playVideo(groupState.rgbVideo);
+      }
+
+      if (groupState.modalVideo.paused) {
+        playVideo(groupState.modalVideo);
+      }
+    };
+
+    const prepareGroup = (groupState) => {
+      const { rgbVideo, modalVideo, source } = groupState;
+
+      if (!currentMode) {
+        return;
+      }
+
+      groupState.modalLabel.textContent = modeLabels[currentMode] || currentMode;
+      rgbVideo.preload = "auto";
+      modalVideo.preload = "auto";
+      ensureVideoSource(rgbVideo);
+
+      const nextSrc = modeSrc(groupState);
+
+      if (source.getAttribute("src") !== nextSrc) {
+        source.setAttribute("src", nextSrc);
+        modalVideo.load();
+      }
+    };
+
+    const pauseGroup = (groupState) => {
+      groupState.rgbVideo.pause();
+      groupState.modalVideo.pause();
+    };
+
     const setMode = (mode) => {
-      const label = modeLabels[mode] || mode;
+      currentMode = mode;
 
       buttons.forEach((button) => {
         const isActive = button.dataset.nvsMode === mode;
@@ -582,18 +752,17 @@
       });
 
       comparisonGroups.forEach((groupState) => {
-        const nextSrc = groupState.scenePrefix + "_" + mode + ".mp4";
+        const hadSource = groupState.source.getAttribute("src") === modeSrc(groupState);
 
-        groupState.modalLabel.textContent = label;
+        prepareGroup(groupState);
 
-        if (groupState.source.getAttribute("src") === nextSrc) {
-          groupState.syncPlayback();
-          return;
+        if (groupState.visible) {
+          if (!hadSource) {
+            groupState.modalVideo.addEventListener("loadedmetadata", groupState.syncPlayback, { once: true });
+          }
+
+          playGroup(groupState);
         }
-
-        groupState.source.setAttribute("src", nextSrc);
-        groupState.modalVideo.addEventListener("loadedmetadata", groupState.syncPlayback, { once: true });
-        groupState.modalVideo.load();
       });
     };
 
@@ -603,14 +772,75 @@
       });
     });
 
-    comparisonGroups.forEach(setupGroup);
+    comparisonGroups.forEach((groupState) => {
+      groupState.visible = false;
+      setupGroup(groupState);
+    });
+
     setMode(buttons[0].dataset.nvsMode);
+
+    if ("IntersectionObserver" in window) {
+      const nvsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const groupState = groupByElement.get(entry.target);
+
+            if (!groupState) {
+              return;
+            }
+
+            const visible = entry.isIntersecting && isNearViewport(entry.target);
+
+            if (visible === groupState.visible) {
+              return;
+            }
+
+            groupState.visible = visible;
+
+            if (visible) {
+              prepareGroup(groupState);
+              playGroup(groupState);
+            } else {
+              pauseGroup(groupState);
+            }
+          });
+        },
+        { rootMargin: "20%" }
+      );
+
+      comparisonGroups.forEach((groupState) => nvsObserver.observe(groupState.group));
+    } else {
+      setMode(buttons[0].dataset.nvsMode);
+      comparisonGroups.forEach((groupState) => {
+        groupState.visible = true;
+        prepareGroup(groupState);
+        playGroup(groupState);
+      });
+    }
+  };
+
+  const initTitleLayerToggle = () => {
+    const storySection = document.querySelector(STORY_SELECTOR);
+    const button = document.getElementById("title-layer-toggle");
+
+    if (!storySection || !button) {
+      return;
+    }
+
+    button.addEventListener("click", () => {
+      const hidden = storySection.classList.toggle("is-title-hidden");
+
+      button.classList.toggle("is-title-hidden", hidden);
+      button.setAttribute("aria-pressed", hidden ? "false" : "true");
+    });
   };
 
   const initPage = () => {
+    initTitleLayerToggle();
     initVideoStory();
     initTrajectoryRigs();
     initImageComparisons();
+    initLazyLoopVideos();
     initNvsComparison();
     initScrollReveal();
   };
