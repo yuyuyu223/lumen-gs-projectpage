@@ -638,7 +638,7 @@
       mask: "Mask",
       normal: "Normal",
       roughness: "Roughness",
-      sunvis: "Sun Visibility",
+      // sunvis: "Sun Visibility",
     };
 
     const getScenePrefix = (rgbVideo) => {
